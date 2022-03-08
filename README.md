@@ -4,6 +4,8 @@ React Tag Input is a robust, minimal and performant input field for creating mul
 
 [See demo & documentation](https://betterstack.dev/projects/react-tag-input)
 
+Branch LinkLei from original: https://github.com/pathofdev/react-tag-input
+
 
 # Customizado para LinkLei
 
