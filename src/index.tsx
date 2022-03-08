@@ -36,7 +36,8 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
     if (this.props.onBlur) {
       this.props.onBlur(e);
     } else {
-      this.addTag(this.state.input);
+      //this.addTag(this.state.input);
+      this.validAddTag();
     }
   }
 
@@ -51,17 +52,7 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
       // Prevent form submission if tag input is nested in <form>
       e.preventDefault();
 
-      // If input is blank, do nothing
-      if (input === "") { return; }
-
-      // Check if input is valid
-      const valid = validator !== undefined ? validator(input) : true;
-      if (!valid) {
-        return;
-      }
-
-      // Add input to tag list
-      this.addTag(input);
+      this.validAddTag();
 
     }
     // On backspace or delete
@@ -77,6 +68,24 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
 
     }
 
+  }
+
+  validAddTag = () => {
+
+    const { input } = this.state;
+    const { validator } = this.props;
+
+    // If input is blank, do nothing
+    if (input === "") { return; }
+
+    // Check if input is valid
+    const valid = validator !== undefined ? validator(input) : true;
+    if (!valid) {
+      return;
+    }
+
+    // Add input to tag list
+    this.addTag(input);
   }
 
   addTag = (value: string) => {

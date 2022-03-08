@@ -35,7 +35,7 @@ var ReactTagInput = (function (_super) {
                 _this.props.onBlur(e);
             }
             else {
-                _this.addTag(_this.state.input);
+                _this.validAddTag();
             }
         };
         _this.onInputKeyDown = function (e) {
@@ -43,14 +43,7 @@ var ReactTagInput = (function (_super) {
             var _a = _this.props, validator = _a.validator, removeOnBackspace = _a.removeOnBackspace, useAnotherCharEnter = _a.useAnotherCharEnter;
             if (e.keyCode === 13 || ((!!useAnotherCharEnter) && e.key === useAnotherCharEnter)) {
                 e.preventDefault();
-                if (input === "") {
-                    return;
-                }
-                var valid = validator !== undefined ? validator(input) : true;
-                if (!valid) {
-                    return;
-                }
-                _this.addTag(input);
+                _this.validAddTag();
             }
             else if (removeOnBackspace && (e.keyCode === 8 || e.keyCode === 46)) {
                 if (input !== "") {
@@ -58,6 +51,18 @@ var ReactTagInput = (function (_super) {
                 }
                 _this.removeTag(_this.props.tags.length - 1);
             }
+        };
+        _this.validAddTag = function () {
+            var input = _this.state.input;
+            var validator = _this.props.validator;
+            if (input === "") {
+                return;
+            }
+            var valid = validator !== undefined ? validator(input) : true;
+            if (!valid) {
+                return;
+            }
+            _this.addTag(input);
         };
         _this.addTag = function (value) {
             var tags = __spreadArrays(_this.props.tags);

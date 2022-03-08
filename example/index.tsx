@@ -27,6 +27,12 @@ function Example() {
         tags={tags}
         onChange={(value) => setTags(value)}
         useAnotherCharEnter={','}
+        validator={(value) => {
+          if (value && value.length > 0 && value.trim()) {
+            return true;
+          }
+          return false;
+        } }
       />
 
       <div className="form">

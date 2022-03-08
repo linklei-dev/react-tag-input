@@ -32110,7 +32110,7 @@ var ReactTagInput = function (_super) {
       if (_this.props.onBlur) {
         _this.props.onBlur(e);
       } else {
-        _this.addTag(_this.state.input);
+        _this.validAddTag();
       }
     };
 
@@ -32124,17 +32124,7 @@ var ReactTagInput = function (_super) {
       if (e.keyCode === 13 || !!useAnotherCharEnter && e.key === useAnotherCharEnter) {
         e.preventDefault();
 
-        if (input === "") {
-          return;
-        }
-
-        var valid = validator !== undefined ? validator(input) : true;
-
-        if (!valid) {
-          return;
-        }
-
-        _this.addTag(input);
+        _this.validAddTag();
       } else if (removeOnBackspace && (e.keyCode === 8 || e.keyCode === 46)) {
         if (input !== "") {
           return;
@@ -32142,6 +32132,23 @@ var ReactTagInput = function (_super) {
 
         _this.removeTag(_this.props.tags.length - 1);
       }
+    };
+
+    _this.validAddTag = function () {
+      var input = _this.state.input;
+      var validator = _this.props.validator;
+
+      if (input === "") {
+        return;
+      }
+
+      var valid = validator !== undefined ? validator(input) : true;
+
+      if (!valid) {
+        return;
+      }
+
+      _this.addTag(input);
     };
 
     _this.addTag = function (value) {
@@ -32368,7 +32375,14 @@ function Example() {
     onChange: function onChange(value) {
       return setTags(value);
     },
-    useAnotherCharEnter: ','
+    useAnotherCharEnter: ',',
+    validator: function validator(value) {
+      if (value && value.length > 0 && value.trim()) {
+        return true;
+      }
+
+      return false;
+    }
   })), _react.default.createElement("div", {
     className: "form"
   }, _react.default.createElement("div", {
@@ -32463,7 +32477,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40433" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34921" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
