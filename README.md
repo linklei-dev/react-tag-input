@@ -123,6 +123,12 @@ Below is an example of usage with all the available options
             <td>String with character delimiter tag items.</td>
         </tr>
         <tr>
+            <td>clearInputOnInvalid</td>
+            <td>boolean</td>
+            <td>no</td>
+            <td>If true, set emtpy input field when value is invalid by validator.</td>
+        </tr>
+        <tr>
             <td>placeholder</td>
             <td>string</td>
             <td>no</td>

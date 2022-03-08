@@ -11,6 +11,7 @@ export interface ReactTagInputProps {
     readOnly?: boolean;
     removeOnBackspace?: boolean;
     useAnotherCharEnter?: string;
+    clearInputOnInvalid?: boolean;
 }
 interface State {
     input: string;

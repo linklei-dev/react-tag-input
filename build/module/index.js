@@ -54,12 +54,15 @@ var ReactTagInput = (function (_super) {
         };
         _this.validAddTag = function () {
             var input = _this.state.input;
-            var validator = _this.props.validator;
+            var _a = _this.props, validator = _a.validator, clearInputOnInvalid = _a.clearInputOnInvalid;
             if (input === "") {
                 return;
             }
             var valid = validator !== undefined ? validator(input) : true;
             if (!valid) {
+                if (clearInputOnInvalid) {
+                    _this.setState({ input: '' });
+                }
                 return;
             }
             _this.addTag(input);

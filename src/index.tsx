@@ -15,6 +15,7 @@ export interface ReactTagInputProps {
   readOnly?: boolean;
   removeOnBackspace?: boolean;
   useAnotherCharEnter?: string;
+  clearInputOnInvalid?: boolean;
 }
 
 interface State {
@@ -73,7 +74,7 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
   validAddTag = () => {
 
     const { input } = this.state;
-    const { validator } = this.props;
+    const { validator, clearInputOnInvalid } = this.props;
 
     // If input is blank, do nothing
     if (input === "") { return; }
@@ -81,6 +82,9 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
     // Check if input is valid
     const valid = validator !== undefined ? validator(input) : true;
     if (!valid) {
+      if (clearInputOnInvalid) {
+        this.setState({input: ''});
+      }
       return;
     }
 

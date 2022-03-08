@@ -32136,7 +32136,9 @@ var ReactTagInput = function (_super) {
 
     _this.validAddTag = function () {
       var input = _this.state.input;
-      var validator = _this.props.validator;
+      var _a = _this.props,
+          validator = _a.validator,
+          clearInputOnInvalid = _a.clearInputOnInvalid;
 
       if (input === "") {
         return;
@@ -32145,6 +32147,12 @@ var ReactTagInput = function (_super) {
       var valid = validator !== undefined ? validator(input) : true;
 
       if (!valid) {
+        if (clearInputOnInvalid) {
+          _this.setState({
+            input: ''
+          });
+        }
+
         return;
       }
 
@@ -32477,7 +32485,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34921" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33555" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
