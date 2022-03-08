@@ -19,6 +19,12 @@ npm run example
 
 # Instalation
 
+## para instalar via github:
+* foi adicionado um script a mais em package.json ("prepare": "npm run build"), para rodar o build apos instalar via npm pelo github.
+```sh
+npm install git+https://github.com/linklei-dev/react-tag-input#master --save-dev
+```
+
 Install the component via NPM package manager
 
 npm install --save @pathofdev/react-tag-input

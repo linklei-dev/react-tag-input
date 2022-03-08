@@ -19,7 +19,8 @@
     "scss-build": "sass src/styles/index.scss build/index.css --style compressed --source-map",
     "build": "rm -rf build && npm run module-build && npm run umd-build && npm run umd-minify && npm run scss-build",
     "push": "git push origin master --tags && npm run build && npm publish",
-    "example": "parcel ./example/index.html"
+    "example": "parcel ./example/index.html",
+    "prepare": "npm run build"
   },
   "keywords": [
     "input tag",
