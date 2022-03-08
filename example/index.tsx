@@ -26,6 +26,7 @@ function Example() {
         {...settings}
         tags={tags}
         onChange={(value) => setTags(value)}
+        useAnotherCharEnter={','}
       />
 
       <div className="form">

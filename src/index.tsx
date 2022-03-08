@@ -7,12 +7,14 @@ type Tags = string[];
 export interface ReactTagInputProps {
   tags: Tags;
   onChange: (tags: Tags) => void;
+  onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   maxTags?: number;
   validator?: (val: string) => boolean;
   editable?: boolean;
   readOnly?: boolean;
   removeOnBackspace?: boolean;
+  useAnotherCharEnter?: string;
 }
 
 interface State {
@@ -30,13 +32,21 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
     this.setState({ input: e.target.value });
   }
 
+  onInputBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    } else {
+      this.addTag(this.state.input);
+    }
+  }
+
   onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
     const { input } = this.state;
-    const { validator, removeOnBackspace } = this.props;
+    const { validator, removeOnBackspace, useAnotherCharEnter } = this.props;
 
     // On enter
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 || ((!!useAnotherCharEnter) && e.key === useAnotherCharEnter) ) {
 
       // Prevent form submission if tag input is nested in <form>
       e.preventDefault();
@@ -72,8 +82,17 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
   addTag = (value: string) => {
     const tags = [ ...this.props.tags ];
     if (!tags.includes(value)) {
-      tags.push(value);
-      this.props.onChange(tags);
+      
+      if (this.props.useAnotherCharEnter) {
+        let list = value.split(this.props.useAnotherCharEnter)
+        list.forEach(item => {
+          tags.push(item);    
+          this.props.onChange(tags);
+        });
+      } else {
+        tags.push(value);    
+        this.props.onChange(tags);
+      }
     }
     this.setState({ input: "" });
   }
@@ -131,6 +150,7 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
             placeholder={placeholder || "Type and press enter"}
             onChange={this.onInputChange}
             onKeyDown={this.onInputKeyDown}
+            onBlur={this.onInputBlur}
           />
         }
       </div>
