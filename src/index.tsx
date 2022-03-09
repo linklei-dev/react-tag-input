@@ -7,7 +7,7 @@ type Tags = string[];
 export interface ReactTagInputProps {
   tags: Tags;
   onChange: (tags: Tags) => void;
-  onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   maxTags?: number;
   validator?: (val: string) => boolean;
@@ -16,6 +16,8 @@ export interface ReactTagInputProps {
   removeOnBackspace?: boolean;
   useAnotherCharEnter?: string;
   clearInputOnInvalid?: boolean;
+  containerProps?: object;
+  inputProps?: object;
 }
 
 interface State {
@@ -140,7 +142,7 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
     const showInput = !readOnly && !maxTagsReached;
 
     return (
-      <div className={classSelectors.wrapper}>
+      <div className={classSelectors.wrapper} {...this.props.containerProps}>
         {tags.map((tag, i) => (
           <Tag
             key={i}
@@ -164,6 +166,7 @@ export default class ReactTagInput extends React.Component<ReactTagInputProps, S
             onChange={this.onInputChange}
             onKeyDown={this.onInputKeyDown}
             onBlur={this.onInputBlur}
+            {...this.props.inputProps}
           />
         }
       </div>

@@ -32075,6 +32075,22 @@ var __extends = void 0 && (void 0).__extends || function () {
   };
 }();
 
+var __assign = void 0 && (void 0).__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
 var __spreadArrays = void 0 && (void 0).__spreadArrays || function () {
   for (var s = 0, i = 0, il = arguments.length; i < il; i++) {
     s += arguments[i].length;
@@ -32224,9 +32240,9 @@ var ReactTagInput = function (_super) {
     var maxTagsReached = maxTags !== undefined ? tags.length >= maxTags : false;
     var isEditable = readOnly ? false : editable || false;
     var showInput = !readOnly && !maxTagsReached;
-    return _react.default.createElement("div", {
+    return _react.default.createElement("div", __assign({
       className: _selectors.classSelectors.wrapper
-    }, tags.map(function (tag, i) {
+    }, this.props.containerProps), tags.map(function (tag, i) {
       return _react.default.createElement(_Tag.Tag, {
         key: i,
         value: tag,
@@ -32239,7 +32255,7 @@ var ReactTagInput = function (_super) {
         validator: validator,
         removeOnBackspace: removeOnBackspace
       });
-    }), showInput && _react.default.createElement("input", {
+    }), showInput && _react.default.createElement("input", __assign({
       ref: this.inputRef,
       value: input,
       className: _selectors.classSelectors.input,
@@ -32247,7 +32263,7 @@ var ReactTagInput = function (_super) {
       onChange: this.onInputChange,
       onKeyDown: this.onInputKeyDown,
       onBlur: this.onInputBlur
-    }));
+    }, this.props.inputProps)));
   };
 
   return ReactTagInput;
@@ -32365,7 +32381,10 @@ var initialSettings = {
   editable: true,
   readOnly: false,
   removeOnBackspace: true,
-  validator: undefined
+  validator: undefined,
+  containerProps: {
+    className: "react-tag-input"
+  }
 };
 
 function Example() {
@@ -32485,7 +32504,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33555" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39881" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

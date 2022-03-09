@@ -14,6 +14,7 @@ const initialSettings: ReactTagInputProps = {
   readOnly: false,
   removeOnBackspace: true,
   validator: undefined,
+  containerProps: {className: "react-tag-input"}
 };
 
 function Example() {

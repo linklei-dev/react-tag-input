@@ -3,7 +3,7 @@ declare type Tags = string[];
 export interface ReactTagInputProps {
     tags: Tags;
     onChange: (tags: Tags) => void;
-    onBlur: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     maxTags?: number;
     validator?: (val: string) => boolean;
@@ -12,6 +12,8 @@ export interface ReactTagInputProps {
     removeOnBackspace?: boolean;
     useAnotherCharEnter?: string;
     clearInputOnInvalid?: boolean;
+    containerProps?: object;
+    inputProps?: object;
 }
 interface State {
     input: string;

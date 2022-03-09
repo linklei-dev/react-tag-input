@@ -129,6 +129,18 @@ Below is an example of usage with all the available options
             <td>If true, set emtpy input field when value is invalid by validator.</td>
         </tr>
         <tr>
+            <td>containerProps</td>
+            <td>object</td>
+            <td>no</td>
+            <td>Properties for use in div container of component. Override another props.</td>
+        </tr>
+        <tr>
+            <td>inputProps</td>
+            <td>object</td>
+            <td>no</td>
+            <td>Properties for use in input element of component. Override another props.</td>
+        </tr>
+        <tr>
             <td>placeholder</td>
             <td>string</td>
             <td>no</td>
